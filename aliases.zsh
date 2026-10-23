@@ -38,8 +38,23 @@ alias zshc="$EDITOR ~/.zshrc"
 alias zshr='exec zsh'
 
 # ---------------------------------------------------------
-# GIT
+# GIT — lazygit sebagai TUI utama
 # ---------------------------------------------------------
+# lg  : buka lazygit di repo saat ini
+# lgd : buka lazygit dengan log level debug (troubleshooting)
+# lgs : buka lazygit langsung ke panel staging
+# lgL : buka lazygit langsung ke panel log/commit
+#
+# Flag `-p <path>` memaksa lazygit memakai path tertentu,
+# bukan mencari parent repo dari current directory. Berguna
+# saat Anda berada di subdirektori yang bukan repo.
+alias lg='lazygit'
+alias lgd='lazygit --debug'
+alias lgs='lazygit -p "$(git rev-parse --show-toplevel 2>/dev/null || echo .)"'
+
+# Shortcut git satu-baris (untuk skrip cepat atau alias CLI)
+# Tetap dipertahankan karena lazygit tidak menggantikan
+# pemakaian non-interaktif seperti `gs | grep`.
 alias gs="git status -sb"
 alias gd="git diff"
 alias gl="git log --oneline -n 10"
